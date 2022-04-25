@@ -1,0 +1,16 @@
+version: "3.7"
+
+networks:
+  api:
+    external: true
+
+services:
+  api-app:
+    build:
+      context: ./docker
+    volumes:
+      - .:/app/:rw
+      - ~/.ssh:/home/test0/.ssh:ro
+    working_dir: /app
+    networks:
+      - api
