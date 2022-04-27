@@ -1,5 +1,8 @@
 version: "3.7"
 
+volumes:
+  api-db:
+
 networks:
   api:
     external: true
@@ -12,5 +15,27 @@ services:
       - .:/app/:rw
       - ~/.ssh:/home/test0/.ssh:ro
     working_dir: /app
+    networks:
+      - api
+
+  api-nginx:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/app
+      - ./docker/nginx:/etc/nginx/conf.d/
+    networks:
+      - api
+
+  api-db:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: origin
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8088:3306"
+    volumes:
+      - api-db:/var/lib/mysql/
     networks:
       - api
