@@ -141,9 +141,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
+        'phone_number' => 'The :attribute has wrong format, use it in E.164 standard.',
+        'country_code' => 'The :attribute has wrong format or there is no such country. Try it in ISO 3166-1 alpha-2 (cca2) format or use official name.',
     ],
 
     /*

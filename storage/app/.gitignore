@@ -1,3 +1,4 @@
 *
 !public/
 !.gitignore
+!countries_validation_info/

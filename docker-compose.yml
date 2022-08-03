@@ -39,3 +39,13 @@ services:
       - api-db:/var/lib/mysql/
     networks:
       - api
+
+  mysql-test:
+    image: mysql:latest
+    tmpfs: /var/lib/mysql
+    command: --innodb_use_native_aio=0
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      MYSQL_DATABASE: default-db
+    networks:
+      - api
